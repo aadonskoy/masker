@@ -1,4 +1,21 @@
 defmodule Masker do
+  @moduledoc """
+  Tool for finding a 2d pattern in a 2d list.
+
+  iex> pattern = [[:O, :X, :O], [:O, :X, :O], [:X, :X, :X]]
+  ...> array2d = [
+  ...>   [1, 4, 2, 4, 5],
+  ...>   [1, 5, 1, 5, 4],
+  ...>   [4, 5, 1, 5, 8],
+  ...>   [8, 1, 1, 1, 4],
+  ...>   [5, 1, 2, 4, 1]
+  ...> ]
+  ...> Masker.has_pattern?(pattern, array2d)
+  """
+
+  @doc """
+  Find pattern and return coordinates of each match.
+  """
   @spec has_pattern?(list, list) :: :none | {:ok, [...]}
   def has_pattern?([], _), do: :none
   def has_pattern?(_, []), do: :none
@@ -43,6 +60,9 @@ defmodule Masker do
     end
   end
 
+  @doc """
+  Crop a 2d list
+  """
   @spec crop(list, integer, integer, integer, integer) :: list
   def crop([], _, _, _, _), do: []
   def crop(_, height, width, _, _) when height <= 0 or width <= 0, do: []
